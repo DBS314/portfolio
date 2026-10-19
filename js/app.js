@@ -540,7 +540,7 @@ function renderResumeView() {
 }
 
 /* --------------------------------------------------------------------------
-   6. VIEW SWITCHING (Clean, Instant — No Ghost Scroll Hijacking)
+   6. FLUID VIEW SWITCHING (Liquid Sliding Nav Pill + View Transitions API)
    -------------------------------------------------------------------------- */
 function initViewNavigation() {
   const views = {
@@ -549,15 +549,24 @@ function initViewNavigation() {
     resume: document.getElementById('view-resume'),
   };
 
+  const navOrder = ['stream', 'gallery', 'resume'];
+  const capsuleNav = document.querySelector('.capsule-nav');
   const navBtns = document.querySelectorAll('[data-view-btn]');
   const codeEl = document.getElementById('dynamic-step-code');
   const titleEl = document.getElementById('dynamic-step-title');
   const railEl = document.getElementById('vertical-step-rail');
 
-  function switchView(target, shouldScrollTop = true) {
+  function applyViewChange(target, shouldScrollTop = true) {
+    const idx = Math.max(0, navOrder.indexOf(target));
+    if (capsuleNav) {
+      capsuleNav.style.setProperty('--nav-index', String(idx));
+    }
+
     Object.entries(views).forEach(([key, el]) => {
       if (key === target) {
         el.hidden = false;
+        el.classList.remove('active');
+        void el.offsetWidth; // trigger smooth CSS entrance keyframe
         el.classList.add('active');
       } else {
         el.hidden = true;
@@ -585,7 +594,15 @@ function initViewNavigation() {
     }
 
     if (shouldScrollTop) {
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function switchView(target, shouldScrollTop = true) {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => applyViewChange(target, shouldScrollTop));
+    } else {
+      applyViewChange(target, shouldScrollTop);
     }
   }
 

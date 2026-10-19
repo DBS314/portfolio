@@ -29,7 +29,8 @@
   --radius-sm: 8px;
   --radius-pill: 9999px;
   --header-height: 68px;
-  --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --apple-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fluid-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --font-display: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -70,18 +71,102 @@ body {
 }
 
 /* ==========================================================================
-   APPLE-STYLE SPRING REVEAL ANIMATION
+   FLUID VIEW TRANSITIONS & SPRING REVEAL ANIMATIONS
    ========================================================================== */
+::view-transition-old(root) {
+  animation: fluidFadeOut 0.26s var(--apple-ease) both;
+}
+
+::view-transition-new(root) {
+  animation: fluidFadeIn 0.42s var(--fluid-spring) both;
+}
+
+@keyframes fluidFadeOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-8px) scale(0.992); }
+}
+
+@keyframes fluidFadeIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.992); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.view-section.active {
+  animation: fluidViewEnter 0.55s var(--fluid-spring) both;
+}
+
+@keyframes fluidViewEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.994);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
 .apple-reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.65s var(--apple-ease), transform 0.65s var(--apple-ease);
+  transform: translateY(28px) scale(0.988);
+  filter: blur(3px);
+  transition:
+    opacity 0.85s var(--fluid-spring),
+    transform 0.85s var(--fluid-spring),
+    filter 0.75s var(--fluid-spring);
+  will-change: opacity, transform, filter;
 }
 
 .apple-reveal.is-visible {
   opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+/* Staggered child cascade inside revealed sections */
+.apple-reveal .metric-cell,
+.apple-reveal .workflow-mini-card,
+.apple-reveal .ledger-card-link,
+.apple-reveal .pres-bullet-list li,
+.apple-reveal .pres-figure-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.65s var(--fluid-spring),
+    transform 0.65s var(--fluid-spring),
+    box-shadow 0.35s var(--apple-ease),
+    border-color 0.35s var(--apple-ease),
+    background-color 0.35s var(--apple-ease);
+}
+
+.apple-reveal.is-visible .metric-cell,
+.apple-reveal.is-visible .workflow-mini-card,
+.apple-reveal.is-visible .ledger-card-link,
+.apple-reveal.is-visible .pres-bullet-list li,
+.apple-reveal.is-visible .pres-figure-card {
+  opacity: 1;
   transform: translateY(0);
 }
+
+.apple-reveal.is-visible .metric-cell:nth-child(1),
+.apple-reveal.is-visible .workflow-mini-card:nth-child(1),
+.apple-reveal.is-visible .ledger-card-link:nth-child(1),
+.apple-reveal.is-visible .pres-bullet-list li:nth-child(1) { transition-delay: 0.04s; }
+
+.apple-reveal.is-visible .metric-cell:nth-child(2),
+.apple-reveal.is-visible .workflow-mini-card:nth-child(2),
+.apple-reveal.is-visible .ledger-card-link:nth-child(2),
+.apple-reveal.is-visible .pres-bullet-list li:nth-child(2) { transition-delay: 0.10s; }
+
+.apple-reveal.is-visible .metric-cell:nth-child(3),
+.apple-reveal.is-visible .workflow-mini-card:nth-child(3),
+.apple-reveal.is-visible .ledger-card-link:nth-child(3),
+.apple-reveal.is-visible .pres-bullet-list li:nth-child(3) { transition-delay: 0.16s; }
+
+.apple-reveal.is-visible .metric-cell:nth-child(4),
+.apple-reveal.is-visible .pres-bullet-list li:nth-child(4) { transition-delay: 0.22s; }
 
 /* ==========================================================================
    UNIFIED PRECISION GLASS TOP RIBBON (Desktop & Mobile)
@@ -92,11 +177,12 @@ body {
   left: 0;
   right: 0;
   min-height: var(--header-height);
-  background: rgba(246, 244, 239, 0.9);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(246, 244, 239, 0.86);
+  backdrop-filter: saturate(190%) blur(22px);
+  -webkit-backdrop-filter: saturate(190%) blur(22px);
   border-bottom: 1px solid var(--border-strong);
   z-index: 1000;
+  transition: background-color 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
 }
 
 .header-inner {
@@ -125,6 +211,11 @@ body {
   text-decoration: none;
   color: var(--ink-primary);
   flex-shrink: 0;
+  transition: transform 0.35s var(--fluid-spring);
+}
+
+.brand-lockup:hover {
+  transform: scale(1.02);
 }
 
 .brand-monogram {
@@ -138,6 +229,12 @@ body {
   justify-content: center;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
   flex-shrink: 0;
+  transition: transform 0.4s var(--fluid-spring), background-color 0.3s ease;
+}
+
+.brand-lockup:hover .brand-monogram {
+  transform: rotate(-6deg) scale(1.05);
+  background: var(--accent-amber);
 }
 
 .brand-text {
@@ -182,6 +279,7 @@ body {
   max-width: 320px;
   white-space: nowrap;
   overflow: hidden;
+  transition: all 0.4s var(--fluid-spring);
 }
 
 .telemetry-dot {
@@ -196,6 +294,7 @@ body {
   font-weight: 700;
   color: var(--accent-amber);
   flex-shrink: 0;
+  transition: color 0.3s ease;
 }
 
 .telemetry-title {
@@ -205,8 +304,10 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Center Segmented Switcher */
+/* Center Segmented Switcher with Liquid Sliding Indicator */
 .capsule-nav {
+  --nav-index: 0;
+  position: relative;
   justify-self: center;
   display: inline-grid;
   grid-template-columns: repeat(3, 1fr);
@@ -215,7 +316,22 @@ body {
   padding: 4px;
   border-radius: 12px;
   border: 1px solid rgba(15, 17, 21, 0.08);
-  gap: 2px;
+  isolation: isolate;
+}
+
+.capsule-nav::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 3);
+  background: #ffffff;
+  border-radius: 9px;
+  box-shadow: 0 3px 10px rgba(15, 17, 21, 0.1), 0 0 0 1px rgba(15, 17, 21, 0.05);
+  transform: translateX(calc(var(--nav-index, 0) * 100%));
+  transition: transform 0.48s var(--fluid-spring);
+  z-index: -1;
 }
 
 .pill-btn {
@@ -233,7 +349,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  transition: all 0.22s var(--apple-ease);
+  transition: color 0.3s var(--apple-ease), transform 0.25s var(--fluid-spring);
   white-space: nowrap;
 }
 
@@ -241,22 +357,26 @@ body {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
-  opacity: 0.8;
+  opacity: 0.78;
+  transition: transform 0.35s var(--fluid-spring), color 0.3s ease, opacity 0.3s ease;
 }
 
 .pill-btn:hover {
   color: var(--ink-primary);
 }
 
+.pill-btn:active {
+  transform: scale(0.96);
+}
+
 .pill-btn.active {
-  background: #ffffff;
   color: var(--ink-primary);
-  box-shadow: 0 2px 8px rgba(15, 17, 21, 0.1), 0 0 0 1px rgba(15, 17, 21, 0.06);
 }
 
 .pill-btn.active .nav-svg {
   color: var(--accent-amber);
   opacity: 1;
+  transform: scale(1.08);
 }
 
 /* Right Contact Button */
@@ -279,13 +399,21 @@ body {
   border-radius: 10px;
   text-decoration: none;
   box-shadow: var(--shadow-btn);
-  transition: all 0.22s var(--apple-ease);
+  transition:
+    transform 0.38s var(--fluid-spring),
+    background-color 0.3s var(--apple-ease),
+    box-shadow 0.38s var(--fluid-spring);
   white-space: nowrap;
 }
 
 .header-contact-btn:hover {
   background: #232730;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -6px rgba(15, 17, 21, 0.25);
+}
+
+.header-contact-btn:active {
+  transform: translateY(0) scale(0.97);
 }
 
 .btn-svg {
@@ -298,11 +426,12 @@ body {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
-  transition: transform 0.22s var(--apple-ease);
+  transition: transform 0.35s var(--fluid-spring);
 }
 
-.header-contact-btn:hover .btn-arrow-svg {
-  transform: translateX(2px);
+.header-contact-btn:hover .btn-arrow-svg,
+.action-btn:hover .btn-arrow-svg {
+  transform: translateX(3px);
 }
 
 .scroll-progress-track {
@@ -310,7 +439,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 2.5px;
   background: transparent;
 }
 
@@ -318,7 +447,7 @@ body {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, var(--accent-amber), var(--accent-blue));
-  transition: width 0.1s linear;
+  transition: width 0.22s var(--fluid-spring);
 }
 
 /* ==========================================================================
@@ -337,8 +466,16 @@ body {
   border-radius: 11px;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.22s var(--apple-ease);
+  transition:
+    transform 0.38s var(--fluid-spring),
+    box-shadow 0.38s var(--fluid-spring),
+    background-color 0.28s var(--apple-ease),
+    border-color 0.28s var(--apple-ease);
   white-space: nowrap;
+}
+
+.action-btn:active {
+  transform: translateY(0) scale(0.98) !important;
 }
 
 .action-btn-left {
