@@ -18,8 +18,8 @@ export const PROFILE = {
   linkedinDisplay: 'www.linkedin.com/in/bala-srinivas-mech',
   phone: '+91 8500716992',
   phoneDisplay: '🇮🇳 +91 8500716992 (IN)',
-  resumePdfUrl: './assets/resume/Dasari_Bala_Srinivas_Resume.pdf',
-  resumeImageUrl: './assets/resume/Dasari_Bala_Srinivas_Resume.png',
+  resumePdfUrl: './assets/resume/Dasari_Bala_Srinivas_CV_2026.pdf?v=2',
+  resumeImageUrl: './assets/resume/Dasari_Bala_Srinivas_Resume.png?v=2',
 
   softwareMatrix: [
     {
