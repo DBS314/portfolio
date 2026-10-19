@@ -1,15 +1,19 @@
 /**
  * MAIN PORTFOLIO CONTROLLER (`js/app.js`)
  * ============================================================================
- * - Zero ghost scrolling (removed automatic bottom scroll hijacking)
- * - Apple-style spring reveal animations (`IntersectionObserver`)
- * - Evenly proportioned 5-card Quick Project Overview strip
- * - Distinct color palettes & gradients per Project Cube
+ * - Zero ghost scrolling & zero horizontal mobile overflow
+ * - Crisp SVG iconography & disciplined visual alignment across Web & Mobile
+ * - Distinct color palettes & subtle atmospheric gradients per Project Cube
  */
 
 import { PROJECTS } from '../projects/index.js';
 import { PROFILE } from '../projects/profile.js';
 import { renderStepMediaGallery, renderTechnicalVisual } from './visuals.js';
+
+const SVG_ARROW_RIGHT = `<svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+const SVG_ARROW_DOWN = `<svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>`;
+const SVG_ARROW_UP_RIGHT = `<svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>`;
+const SVG_TOOL = `<svg class="tool-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeroAndProfile();
@@ -57,8 +61,8 @@ function initHeroAndProfile() {
     (proj) => `
       <a href="#cube-${proj.id}" class="ledger-card-link">
         <div class="ledger-card-top">
-          <span class="ledger-pill-num">${proj.number}</span>
-          <span class="ledger-card-arrow">→</span>
+          <span class="ledger-pill-num">PROJECT ${proj.number}</span>
+          <span class="ledger-card-arrow">${SVG_ARROW_RIGHT}</span>
         </div>
         <div class="ledger-card-title">${proj.title}</div>
         <div class="ledger-card-cat">${proj.category}</div>
@@ -68,22 +72,31 @@ function initHeroAndProfile() {
 
   const servicesEl = document.getElementById('services-mini-list');
   servicesEl.innerHTML = PROFILE.servicesForClients
-    .map((s) => `<div class="service-mini-item"><strong>${s.code}:</strong> ${s.title}</div>`)
+    .map((s) => `<div class="service-mini-item"><strong>${s.code}</strong><span>${s.title}</span></div>`)
     .join('');
 
   const linksEl = document.getElementById('contact-links-box');
   linksEl.innerHTML = `
     <a class="contact-link-row" href="mailto:${PROFILE.email}">
-      <span>EMAIL</span>
-      <span>${PROFILE.email} ↗</span>
+      <div class="contact-row-meta">
+        <span class="contact-row-label">EMAIL</span>
+        <span class="contact-row-val">${PROFILE.email}</span>
+      </div>
+      ${SVG_ARROW_UP_RIGHT}
     </a>
     <a class="contact-link-row" href="${PROFILE.linkedin}" target="_blank" rel="noopener">
-      <span>LINKEDIN</span>
-      <span>${PROFILE.linkedinDisplay} ↗</span>
+      <div class="contact-row-meta">
+        <span class="contact-row-label">LINKEDIN</span>
+        <span class="contact-row-val">${PROFILE.linkedinDisplay}</span>
+      </div>
+      ${SVG_ARROW_UP_RIGHT}
     </a>
     <a class="contact-link-row" href="tel:${PROFILE.phone.replace(/\s+/g, '')}">
-      <span>PHONE (INDIA)</span>
-      <span>${PROFILE.phoneDisplay}</span>
+      <div class="contact-row-meta">
+        <span class="contact-row-label">PHONE (INDIA)</span>
+        <span class="contact-row-val">${PROFILE.phoneDisplay}</span>
+      </div>
+      ${SVG_ARROW_RIGHT}
     </a>
   `;
 }
@@ -120,12 +133,12 @@ function renderProjectCubes() {
     const themeClass = `cube-theme-${pIndex % 5}`;
     const nextProj = PROJECTS[pIndex + 1];
     const nextHref = nextProj ? `#cube-${nextProj.id}` : '#contact-cube';
-    const nextLabel = nextProj ? `Next: Project ${nextProj.number}` : 'Final: Contact Details';
+    const nextLabel = nextProj ? `Next: Project ${nextProj.number}` : 'Contact & Resume';
 
     const hasMetrics = Array.isArray(proj.metrics) && proj.metrics.length > 0;
     const metricsHtml = hasMetrics
       ? `
-      <div class="cube-metrics-strip" style="grid-template-columns: repeat(${Math.min(proj.metrics.length, 4)}, 1fr);">
+      <div class="cube-metrics-strip">
         ${proj.metrics
           .map(
             (m) => `
@@ -139,7 +152,7 @@ function renderProjectCubes() {
       : '';
 
     const toolsHtml = (proj.tools || [])
-      .map((t) => `<span class="tool-pill">⚙ ${t}</span>`)
+      .map((t) => `<span class="tool-pill">${SVG_TOOL}<span>${t}</span></span>`)
       .join('');
 
     let problemBlockHtml = '';
@@ -164,12 +177,12 @@ function renderProjectCubes() {
         <div class="cube-problem-block ${!hasConstraints ? 'single-col' : ''}">
           <div class="problem-left">
             <div>
-              <span class="mono-tag">PROBLEM STATEMENT &amp; TOOLS</span>
+              <span class="mono-tag">PROBLEM STATEMENT &amp; METHODOLOGY</span>
               <h3>${proj.problemStatement.heading}</h3>
               <p class="problem-summary">${proj.problemStatement.summary}</p>
             </div>
-            <div>
-              <div class="tools-label">TOOLS &amp; STANDARDS EMPLOYED:</div>
+            <div class="tools-block-wrap">
+              <div class="tools-label">TOOLS &amp; STANDARDS EMPLOYED</div>
               <div class="tools-row">${toolsHtml}</div>
             </div>
           </div>
@@ -182,14 +195,14 @@ function renderProjectCubes() {
       proj.steps.length > 1
         ? `
       <div class="cube-step-jumper" aria-label="Presentation Slides">
-        <span class="jumper-label">SLIDE DECK INDEX (${proj.steps.length} SLIDES) — CLICK TO JUMP:</span>
+        <span class="jumper-label">SLIDE DECK INDEX (${proj.steps.length} SLIDES) — SELECT TO JUMP</span>
         <div class="jumper-pills">
           ${proj.steps
             .map(
               (st, sIdx) => `
             <a href="#step-${proj.id}-${sIdx}" class="phase-jump-pill">
-              <span>0${sIdx + 1}</span>
-              <div>${st.title}</div>
+              <span class="jump-num">0${sIdx + 1}</span>
+              <span class="jump-text">${st.title}</span>
             </a>
           `
             )
@@ -226,16 +239,18 @@ function renderProjectCubes() {
           step.table && Array.isArray(step.table.headers)
             ? `
           <div class="step-table-wrap">
-            <table class="eng-data-table">
-              <thead>
-                <tr>${step.table.headers.map((h) => `<th>${h}</th>`).join('')}</tr>
-              </thead>
-              <tbody>
-                ${step.table.rows
-                  .map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join('')}</tr>`)
-                  .join('')}
-              </tbody>
-            </table>
+            <div class="table-scroll-container">
+              <table class="eng-data-table">
+                <thead>
+                  <tr>${step.table.headers.map((h) => `<th>${h}</th>`).join('')}</tr>
+                </thead>
+                <tbody>
+                  ${step.table.rows
+                    .map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join('')}</tr>`)
+                    .join('')}
+                </tbody>
+              </table>
+            </div>
           </div>`
             : '';
 
@@ -250,7 +265,7 @@ function renderProjectCubes() {
 
           <div class="pres-slide-top">
             <div class="pres-slide-title-row">
-              <div>
+              <div class="pres-title-col">
                 <span class="pres-step-pill">${step.stepCode}</span>
                 <h4 class="pres-slide-title">${step.title}</h4>
                 ${leadSubheading}
@@ -280,8 +295,8 @@ function renderProjectCubes() {
                data-rail-id="cube-${proj.id}">
         <div class="cube-header">
           <div class="cube-id-group">
-            <span class="cube-number-pill">${proj.number} / 0${PROJECTS.length}</span>
-            <div>
+            <span class="cube-number-pill">PROJECT ${proj.number}</span>
+            <div class="cube-title-wrap">
               <h2 class="cube-title">${proj.title}</h2>
               <p class="cube-subtitle">${proj.subtitle}</p>
             </div>
@@ -302,12 +317,12 @@ function renderProjectCubes() {
 
         <div class="cube-outcome-bar">
           <div class="outcome-text">
-            <span class="outcome-label">● CONCLUSION &amp; DELIVERABLE:</span>
-            ${proj.outcome}
+            <span class="outcome-label">KEY DELIVERABLE &amp; OUTCOME</span>
+            <p>${proj.outcome}</p>
           </div>
-          <a href="${nextHref}" class="cta-pill-btn dark-solid">
+          <a href="${nextHref}" class="action-btn primary">
             <span>${nextLabel}</span>
-            <span class="cta-circle-icon">↓</span>
+            ${SVG_ARROW_DOWN}
           </a>
         </div>
       </section>
@@ -376,7 +391,7 @@ function renderResumeView() {
       <div class="matrix-box">
         <h4>${group.domain}</h4>
         <div class="tools-row">
-          ${group.items.map((item) => `<span class="tool-pill">${item}</span>`).join('')}
+          ${group.items.map((item) => `<span class="tool-pill"><span>${item}</span></span>`).join('')}
         </div>
       </div>
     `
@@ -391,13 +406,13 @@ function renderResumeView() {
           <span>${exp.company} — ${exp.location}</span>
           <span class="exp-period">${exp.totalDuration}</span>
         </div>
-        <div style="margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px;">
+        <div class="exp-roles-stack">
           ${exp.roles
             .map(
               (r) => `
-            <div style="display: flex; justify-content: space-between; font-size: 0.94rem; font-weight: 600; color: var(--ink-secondary);">
+            <div class="exp-role-row">
               <span>${r.title}</span>
-              <span style="font-family: var(--font-mono); font-size: 0.8rem;">${r.period}</span>
+              <span class="exp-role-date">${r.period}</span>
             </div>
           `
             )
@@ -419,7 +434,7 @@ function renderResumeView() {
           <span>${rp.title}</span>
           <span class="exp-period">${rp.period}</span>
         </div>
-        <p style="color: var(--ink-secondary); font-size: 0.95rem; line-height: 1.65;">${rp.description}</p>
+        <p class="exp-desc-p">${rp.description}</p>
       </div>
     `
     )
@@ -430,10 +445,10 @@ function renderResumeView() {
       (ed) => `
       <div class="exp-item">
         <div class="exp-head">
-          <span>${ed.degree} — <strong style="color: var(--accent-signal);">${ed.score}</strong></span>
+          <span>${ed.degree} — <strong style="color: var(--accent-amber);">${ed.score}</strong></span>
           <span class="exp-period">${ed.period}</span>
         </div>
-        <p style="color: var(--ink-secondary); font-size: 0.95rem;">${ed.institution}</p>
+        <p class="exp-desc-p">${ed.institution}</p>
       </div>
     `
     )
@@ -442,9 +457,9 @@ function renderResumeView() {
   const certHtml = PROFILE.certifications
     .map(
       (c) => `
-      <div class="exp-item" style="padding: 12px 0;">
+      <div class="exp-item cert-item">
         <div class="exp-head" style="margin-bottom: 0;">
-          <span>▪ ${c.title}</span>
+          <span>${c.title}</span>
           <span class="exp-period">${c.period}</span>
         </div>
       </div>
@@ -460,9 +475,9 @@ function renderResumeView() {
         <p class="resume-role">${PROFILE.role}</p>
       </div>
       <div class="resume-contact-meta">
-        <div><a href="mailto:${PROFILE.email}" style="color: var(--ink-primary); font-weight: 700;">${PROFILE.email} ↗</a></div>
-        <div><a href="tel:${PROFILE.phone.replace(/\s+/g, '')}" style="color: var(--ink-primary); font-weight: 700;">${PROFILE.phoneDisplay}</a></div>
-        <div><a href="${PROFILE.linkedin}" target="_blank" rel="noopener" style="color: var(--accent-blue); font-weight: 700;">${PROFILE.linkedinDisplay} ↗</a></div>
+        <div><a href="mailto:${PROFILE.email}">${PROFILE.email} ↗</a></div>
+        <div><a href="tel:${PROFILE.phone.replace(/\s+/g, '')}">${PROFILE.phoneDisplay}</a></div>
+        <div><a href="${PROFILE.linkedin}" target="_blank" rel="noopener">${PROFILE.linkedinDisplay} ↗</a></div>
         <div>${PROFILE.location}</div>
       </div>
     </div>
@@ -471,7 +486,7 @@ function renderResumeView() {
     <div class="official-resume-paper-wrap">
       <div class="official-resume-paper-bar no-print">
         <span class="mono-tag">OFFICIAL UPLOADED RESUME DOCUMENT (A4)</span>
-        <a href="${PROFILE.resumePdfUrl}" target="_blank" rel="noopener" class="mono-tag" style="color: var(--accent-blue); text-decoration: none;">
+        <a href="${PROFILE.resumePdfUrl}" target="_blank" rel="noopener" class="mono-tag link-tag">
           OPEN ORIGINAL PDF IN NEW TAB ↗
         </a>
       </div>
@@ -486,7 +501,7 @@ function renderResumeView() {
     <div class="resume-structured-breakdown no-print">
       <div class="resume-section">
         <div class="resume-sec-title">01 / SUMMARY</div>
-        <p style="color: var(--ink-secondary); font-size: 1rem; line-height: 1.7;">${PROFILE.summary}</p>
+        <p class="exp-desc-p">${PROFILE.summary}</p>
       </div>
 
       <div class="resume-section">
@@ -566,7 +581,7 @@ function initViewNavigation() {
       titleEl.textContent = 'Curriculum Vitae';
     } else {
       codeEl.textContent = '00 / OVERVIEW';
-      titleEl.textContent = 'Quick Introduction';
+      titleEl.textContent = 'Portfolio Index';
     }
 
     if (shouldScrollTop) {
@@ -587,21 +602,18 @@ function initViewNavigation() {
     switchView('stream', true);
   });
 
-  ['contact-jump-btn', 'mobile-contact-btn'].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        switchView('stream', false);
-        document.getElementById('contact-cube')?.scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-  });
+  const contactJumpBtn = document.getElementById('contact-jump-btn');
+  if (contactJumpBtn) {
+    contactJumpBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchView('stream', false);
+      document.getElementById('contact-cube')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 }
 
 /* --------------------------------------------------------------------------
    7. SCROLL SPY, APPLE SPRING REVEAL & IDLE SCROLL INDICATOR
-   (Zero automatic scroll hijacking / ghost scrolling!)
    -------------------------------------------------------------------------- */
 function initScrollSpyAndAppleAnimations() {
   const codeEl = document.getElementById('dynamic-step-code');
@@ -611,7 +623,6 @@ function initScrollSpyAndAppleAnimations() {
   const railNodes = document.querySelectorAll('[data-rail-target]');
   const bottomScrollCue = document.getElementById('bottom-scroll-indicator');
 
-  // 1. Apple-style Smooth Spring Reveal Observer
   const revealItems = document.querySelectorAll('.apple-reveal');
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -628,7 +639,6 @@ function initScrollSpyAndAppleAnimations() {
   );
   revealItems.forEach((el) => revealObserver.observe(el));
 
-  // 2. Active Section Telemetry & Right Rail Observer
   const trackedBlocks = document.querySelectorAll('[data-scroll-code]');
   const spyObserver = new IntersectionObserver(
     (entries) => {
@@ -665,7 +675,6 @@ function initScrollSpyAndAppleAnimations() {
   );
   trackedBlocks.forEach((block) => spyObserver.observe(block));
 
-  // 3. Passive Scroll Listener for Top Progress Bar & Bottom Scroll Indicator Fade/Idle
   let idleTimer = null;
   window.addEventListener(
     'scroll',
@@ -686,11 +695,9 @@ function initScrollSpyAndAppleAnimations() {
     { passive: true }
   );
 
-  // Manual button at the bottom to return smoothly to Project 01 when desired
   if (restartBtn) {
     restartBtn.addEventListener('click', () => {
-      const firstCube = document.querySelector('.project-cube');
-      firstCube?.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 }

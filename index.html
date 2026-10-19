@@ -2,54 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bala Srinivas — CAD &amp; CAE Portfolio</title>
-  <meta name="description" content="Mechanical CAD Design and CAE Simulation Portfolio of Bala Srinivas." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Dasari Bala Srinivas — Mechanical CAD &amp; CAE Portfolio</title>
+  <meta name="description" content="Mechanical Engineer | CAD & CAE | Systems Engineering, Design & Integration | Defence, Aerospace & Energy." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/swiss.css" />
 </head>
 <body>
 
   <!-- ====================================================================
-       PROPORTIONED 3-COLUMN APPLE-GLASS TOP RIBBON
-       Left: Identity + Live Section Pill | Center: Segmented Nav | Right: CTA
+       UNIFIED PRECISION GLASS TOP RIBBON (Desktop & Mobile)
        ==================================================================== -->
   <header class="floating-header" id="top-ribbon">
     <div class="header-inner">
-      <!-- Column 1 (Left): Brand + Live Active Section Indicator -->
+      <!-- Left: Identity Lockup + Live Section Indicator -->
       <div class="header-col-left">
         <a href="#top" class="brand-lockup" data-view-target="stream">
-          <span class="brand-monogram">BS</span>
+          <span class="brand-monogram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </span>
           <div class="brand-text">
             <span class="brand-name">Bala Srinivas</span>
-            <span class="brand-sub">CAD &amp; CAE Engineer</span>
+            <span class="brand-sub">Mechanical · CAD &amp; CAE</span>
           </div>
         </a>
 
         <span class="header-v-divider" aria-hidden="true"></span>
 
-        <!-- Live Dynamic Heading Pill -->
+        <!-- Live Active Section Indicator -->
         <div class="dynamic-telemetry-pill" aria-live="polite">
           <span class="telemetry-dot"></span>
           <span class="telemetry-code" id="dynamic-step-code">00 / OVERVIEW</span>
-          <span class="telemetry-title" id="dynamic-step-title">Quick Introduction</span>
+          <span class="telemetry-title" id="dynamic-step-title">Portfolio Index</span>
         </div>
       </div>
 
-      <!-- Column 2 (Center): Symmetrical Segmented Pill Navigation -->
+      <!-- Center: Segmented View Switcher with Vector Icons -->
       <nav class="capsule-nav" aria-label="Primary Portfolio Views">
-        <button class="pill-btn active" data-view-btn="stream">Projects</button>
-        <button class="pill-btn" data-view-btn="gallery">Gallery</button>
-        <button class="pill-btn" data-view-btn="resume">Resume</button>
+        <button class="pill-btn active" data-view-btn="stream">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+          <span>Projects</span>
+        </button>
+        <button class="pill-btn" data-view-btn="gallery">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          <span>Gallery</span>
+        </button>
+        <button class="pill-btn" data-view-btn="resume">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          <span>Resume</span>
+        </button>
       </nav>
 
-      <!-- Column 3 (Right): Contact CTA -->
+      <!-- Right: Clean Contact Action Button -->
       <div class="header-col-right">
-        <a href="#contact-cube" class="cta-pill-btn" id="contact-jump-btn">
+        <a href="#contact-cube" class="header-contact-btn" id="contact-jump-btn">
+          <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
           <span>Contact</span>
-          <span class="cta-circle-icon" aria-hidden="true">→</span>
+          <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
         </a>
       </div>
     </div>
@@ -61,69 +96,126 @@
   </header>
 
   <!-- ====================================================================
-       RIGHT-HAND VERTICAL TIMELINE RAIL
+       RIGHT-HAND VERTICAL TIMELINE RAIL (Desktop Only)
        ==================================================================== -->
   <aside class="vertical-step-rail" id="vertical-step-rail" aria-label="Project Scroll Progress"></aside>
 
   <!-- ====================================================================
-       VIEW 01: PROJECTS STREAM (Accessible Intro Banner + Project Cubes)
+       VIEW 01: PROJECTS STREAM (Hero Overview + Project Cubes)
        ==================================================================== -->
   <main id="view-stream" class="view-section active">
 
-    <!-- Accessible, Creative Quick-Overview Hero Banner -->
-    <section class="hero-stage apple-reveal" id="top" data-scroll-code="00 / OVERVIEW" data-scroll-title="Quick Introduction &amp; Work Index" data-rail-id="top">
-      <!-- Subtle Creative Ambient Glow Orbs -->
+    <!-- Accessible, Structured Hero Overview Banner -->
+    <section class="hero-stage apple-reveal" id="top" data-scroll-code="00 / OVERVIEW" data-scroll-title="Portfolio Overview" data-rail-id="top">
       <div class="hero-ambient-orb orb-1" aria-hidden="true"></div>
       <div class="hero-ambient-orb orb-2" aria-hidden="true"></div>
 
       <div class="hero-top-grid">
-        <!-- Left: Friendly, Easy-to-Read Intro -->
+        <!-- Left Column: Crisp Heading, Bio & Uniform Action Buttons -->
         <div class="hero-main-copy">
+          <div class="hero-role-tag">
+            <span>MECHANICAL ENGINEER · CAD &amp; CAE · DEFENCE, AEROSPACE &amp; ENERGY</span>
+          </div>
+
           <h1 class="hero-display">
-            Turning Mechanical Ideas Into <span class="serif-italic">Tested, Ready-to-Build</span> Products.
+            Turning Mechanical Ideas Into <span class="hero-highlight">Tested, Ready-to-Build</span> Systems.
           </h1>
 
           <p class="hero-lead" id="hero-tagline"></p>
 
           <div class="hero-cta-row">
-            <a href="#project-cubes-container" class="cta-pill-btn dark-solid">
-              <span>Browse Projects</span>
-              <span class="cta-circle-icon">↓</span>
+            <a href="#project-cubes-container" class="action-btn primary">
+              <span class="action-btn-left">
+                <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                  <polyline points="2 17 12 22 22 17"/>
+                  <polyline points="2 12 12 17 22 12"/>
+                </svg>
+                <span>Explore Projects</span>
+              </span>
+              <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <polyline points="19 12 12 19 5 12"/>
+              </svg>
             </a>
-            <button class="cta-pill-btn light-outline" data-open-view="gallery">
-              <span class="cta-circle-icon">⊞</span>
-              <span>Image Gallery</span>
+
+            <button class="action-btn secondary" data-open-view="gallery">
+              <span class="action-btn-left">
+                <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                  <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                  <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                </svg>
+                <span>Image Gallery</span>
+              </span>
+              <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
             </button>
-            <button class="cta-pill-btn light-outline" data-open-view="resume">
-              <span>View Resume</span>
-              <span class="cta-circle-icon">↗</span>
+
+            <button class="action-btn secondary" data-open-view="resume">
+              <span class="action-btn-left">
+                <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span>View Resume</span>
+              </span>
+              <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
             </button>
           </div>
         </div>
 
-        <!-- Right: Creative Minimalist "How I Work" + Featured Visual Card -->
+        <!-- Right Column: 3 Capability Cards + Featured CAD Viewport -->
         <div class="hero-creative-showcase">
           <div class="workflow-cards-grid">
             <div class="workflow-mini-card">
-              <span class="wf-num">01</span>
-              <div>
-                <strong>CAD &amp; Systems Design</strong>
-                <p>SolidWorks &amp; CATIA — VPX chassis, LRUs, structural assemblies &amp; flexures.</p>
+              <div class="wf-card-head">
+                <span class="wf-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                  </svg>
+                </span>
+                <span class="wf-num">01</span>
               </div>
+              <strong>CAD &amp; Systems Design</strong>
+              <p>SolidWorks &amp; CATIA — VPX chassis, LRUs, structural assemblies &amp; flexures.</p>
             </div>
+
             <div class="workflow-mini-card">
-              <span class="wf-num">02</span>
-              <div>
-                <strong>CAE &amp; CFD Simulation</strong>
-                <p>ANSYS, Fluent &amp; SimScale — thermal, structural FEA &amp; aerodynamics.</p>
+              <div class="wf-card-head">
+                <span class="wf-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  </svg>
+                </span>
+                <span class="wf-num">02</span>
               </div>
+              <strong>CAE &amp; CFD Simulation</strong>
+              <p>ANSYS, Fluent &amp; SimScale — thermal, structural FEA &amp; aerodynamics.</p>
             </div>
+
             <div class="workflow-mini-card">
-              <span class="wf-num">03</span>
-              <div>
-                <strong>Standards &amp; Documentation</strong>
-                <p>MIL-STD, VITA &amp; Indian Standards (IS) — ICDs, QAPs, BOMs &amp; drawings.</p>
+              <div class="wf-card-head">
+                <span class="wf-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <polyline points="9 12 11 14 15 10"/>
+                  </svg>
+                </span>
+                <span class="wf-num">03</span>
               </div>
+              <strong>Standards &amp; Docs</strong>
+              <p>MIL-STD, VITA &amp; Indian Standards (IS) — ICDs, QAPs, BOMs &amp; drawings.</p>
             </div>
           </div>
 
@@ -131,7 +223,7 @@
             <div class="featured-frame-bar">
               <span class="dot-group"><i></i><i></i><i></i></span>
               <span class="frame-label">FEATURED CAD — EV BATTERY THERMAL SYSTEM</span>
-              <span class="frame-zoom">CLICK TO ENLARGE ↗</span>
+              <span class="frame-zoom">ENLARGE ↗</span>
             </div>
             <div class="hero-blueprint-showcase" id="hero-blueprint-preview"></div>
           </div>
@@ -142,8 +234,8 @@
       <div class="hero-index-strip">
         <div class="index-strip-header">
           <div class="index-strip-title">
-            <span class="mono-tag">QUICK PROJECT OVERVIEW</span>
-            <span class="index-strip-hint">Click any project below or scroll down to explore step-by-step</span>
+            <span class="mono-tag">QUICK PROJECT DIRECTORY</span>
+            <span class="index-strip-hint">Select any project below to jump directly to its engineering slide deck</span>
           </div>
           <span class="mono-counter" id="project-count-badge">03 PROJECTS</span>
         </div>
@@ -174,27 +266,42 @@
 
       <div class="contact-bento-grid">
         <div class="contact-bento-card">
-          <span class="mono-tag">CURRICULUM VITAE</span>
-          <h3>Official Engineering Resume</h3>
-          <p>View or print the complete resume covering R&amp;D engineering experience, technical capabilities, projects, education, and certifications.</p>
+          <div>
+            <span class="mono-tag">CURRICULUM VITAE</span>
+            <h3>Official Engineering Resume</h3>
+            <p>View or print the complete resume covering R&amp;D engineering experience, technical capabilities, projects, education, and certifications.</p>
+          </div>
           <div class="card-action-footer">
-            <button class="cta-pill-btn dark-solid" data-open-view="resume">
-              <span>View / Print Resume</span>
-              <span class="cta-circle-icon">→</span>
+            <button class="action-btn primary full-width" data-open-view="resume">
+              <span class="action-btn-left">
+                <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                <span>View / Print Resume</span>
+              </span>
+              <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
             </button>
           </div>
         </div>
 
         <div class="contact-bento-card">
-          <span class="mono-tag">SKILLS &amp; CAPABILITIES</span>
-          <h3>Core Engineering Domains</h3>
-          <p>First-principles mechanical design, electronics packaging, and CAE simulation across Defence, Aerospace, and Energy systems:</p>
+          <div>
+            <span class="mono-tag">SKILLS &amp; CAPABILITIES</span>
+            <h3>Core Engineering Domains</h3>
+            <p>First-principles mechanical design, electronics packaging, and CAE simulation across Defence, Aerospace, and Energy systems:</p>
+          </div>
           <div class="services-mini" id="services-mini-list"></div>
         </div>
 
         <div class="contact-bento-card dark-panel">
-          <span class="mono-tag light">DIRECT CONTACT</span>
-          <h3>Reach Out Directly</h3>
+          <div>
+            <span class="mono-tag light">DIRECT CONTACT</span>
+            <h3>Reach Out Directly</h3>
+          </div>
           <div class="contact-links" id="contact-links-box"></div>
         </div>
       </div>
@@ -203,11 +310,14 @@
         <div class="loop-banner">
           <div class="loop-status">
             <span class="telemetry-dot"></span>
-            <span>YOU HAVE REACHED THE END OF THE PORTFOLIO</span>
+            <span>END OF PROJECT STREAM</span>
           </div>
-          <button class="cta-pill-btn light-outline" id="restart-sequence-btn">
-            <span>Back to Top / Project 01</span>
-            <span class="cta-circle-icon">↑</span>
+          <button class="action-btn secondary compact" id="restart-sequence-btn">
+            <span>Back to Top</span>
+            <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"/>
+              <polyline points="5 12 12 5 19 12"/>
+            </svg>
           </button>
         </div>
       </div>
@@ -232,13 +342,25 @@
         <p class="subview-desc">Mechanical Engineer | CAD &amp; CAE | Systems Engineering, Design &amp; Integration | Defence, Aerospace &amp; Energy</p>
       </div>
       <div class="resume-actions">
-        <a class="cta-pill-btn light-outline" href="./assets/resume/Dasari_Bala_Srinivas_Resume.pdf" download="Dasari_Bala_Srinivas_Resume.pdf">
-          <span>Download PDF</span>
-          <span class="cta-circle-icon">↓</span>
+        <a class="action-btn secondary" href="./assets/resume/Dasari_Bala_Srinivas_Resume.pdf" download="Dasari_Bala_Srinivas_Resume.pdf">
+          <span class="action-btn-left">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>Download PDF</span>
+          </span>
         </a>
-        <button class="cta-pill-btn dark-solid" id="print-resume-btn">
-          <span>Print / Save as PDF</span>
-          <span class="cta-circle-icon">↗</span>
+        <button class="action-btn primary" id="print-resume-btn">
+          <span class="action-btn-left">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"/>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+              <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            <span>Print / Save PDF</span>
+          </span>
         </button>
       </div>
     </div>
@@ -248,7 +370,6 @@
 
   <!-- ====================================================================
        FIXED BOTTOM-CENTER WHITE SCROLL ANIMATION INDICATOR
-       Fades out on scroll, reappears softly when idle
        ==================================================================== -->
   <div class="bottom-scroll-indicator" id="bottom-scroll-indicator" aria-hidden="true">
     <div class="scroll-pill-glass">
@@ -263,36 +384,13 @@
     </div>
   </div>
 
-  <!-- ====================================================================
-       MOBILE STICKY BOTTOM QUICK-BAR
-       ==================================================================== -->
-  <nav class="mobile-bottom-dock" aria-label="Mobile Quick Navigation">
-    <button class="dock-btn active" data-view-btn="stream">
-      <span class="dock-icon">⬡</span>
-      <span>Projects</span>
-    </button>
-    <button class="dock-btn" data-view-btn="gallery">
-      <span class="dock-icon">⊞</span>
-      <span>Gallery</span>
-    </button>
-    <button class="dock-btn" data-view-btn="resume">
-      <span class="dock-icon">▤</span>
-      <span>Resume</span>
-    </button>
-    <a href="#contact-cube" class="dock-btn dock-cta" id="mobile-contact-btn">
-      <span class="dock-icon">↗</span>
-      <span>Contact</span>
-    </a>
-  </nav>
-
   <!-- Lightbox Modal -->
   <div class="lightbox-backdrop" id="figure-lightbox" hidden>
     <div class="lightbox-frame">
       <div class="lightbox-top">
         <span id="lightbox-caption" class="mono-label">FIGURE INSPECTION</span>
-        <button class="cta-pill-btn dark-solid compact" id="lightbox-close-btn">
+        <button class="action-btn primary compact" id="lightbox-close-btn">
           <span>Close [ESC]</span>
-          <span class="cta-circle-icon">✕</span>
         </button>
       </div>
       <div class="lightbox-canvas" id="lightbox-canvas"></div>
