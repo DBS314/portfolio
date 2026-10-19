@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bala Srinivas — CAD &amp; CAE Portfolio</title>
+  <meta name="description" content="Mechanical CAD Design and CAE Simulation Portfolio of Bala Srinivas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/swiss.css" />
+</head>
+<body>
+
+  <!-- ====================================================================
+       PROPORTIONED 3-COLUMN APPLE-GLASS TOP RIBBON
+       Left: Identity + Live Section Pill | Center: Segmented Nav | Right: CTA
+       ==================================================================== -->
+  <header class="floating-header" id="top-ribbon">
+    <div class="header-inner">
+      <!-- Column 1 (Left): Brand + Live Active Section Indicator -->
+      <div class="header-col-left">
+        <a href="#top" class="brand-lockup" data-view-target="stream">
+          <span class="brand-monogram">BS</span>
+          <div class="brand-text">
+            <span class="brand-name">Bala Srinivas</span>
+            <span class="brand-sub">CAD &amp; CAE Engineer</span>
+          </div>
+        </a>
+
+        <span class="header-v-divider" aria-hidden="true"></span>
+
+        <!-- Live Dynamic Heading Pill -->
+        <div class="dynamic-telemetry-pill" aria-live="polite">
+          <span class="telemetry-dot"></span>
+          <span class="telemetry-code" id="dynamic-step-code">00 / OVERVIEW</span>
+          <span class="telemetry-title" id="dynamic-step-title">Quick Introduction</span>
+        </div>
+      </div>
+
+      <!-- Column 2 (Center): Symmetrical Segmented Pill Navigation -->
+      <nav class="capsule-nav" aria-label="Primary Portfolio Views">
+        <button class="pill-btn active" data-view-btn="stream">Projects</button>
+        <button class="pill-btn" data-view-btn="gallery">Gallery</button>
+        <button class="pill-btn" data-view-btn="resume">Resume</button>
+      </nav>
+
+      <!-- Column 3 (Right): Contact CTA -->
+      <div class="header-col-right">
+        <a href="#contact-cube" class="cta-pill-btn" id="contact-jump-btn">
+          <span>Contact</span>
+          <span class="cta-circle-icon" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Smooth Scroll Progress Line -->
+    <div class="scroll-progress-track">
+      <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       RIGHT-HAND VERTICAL TIMELINE RAIL
+       ==================================================================== -->
+  <aside class="vertical-step-rail" id="vertical-step-rail" aria-label="Project Scroll Progress"></aside>
+
+  <!-- ====================================================================
+       VIEW 01: PROJECTS STREAM (Accessible Intro Banner + Project Cubes)
+       ==================================================================== -->
+  <main id="view-stream" class="view-section active">
+
+    <!-- Accessible, Creative Quick-Overview Hero Banner -->
+    <section class="hero-stage apple-reveal" id="top" data-scroll-code="00 / OVERVIEW" data-scroll-title="Quick Introduction &amp; Work Index" data-rail-id="top">
+      <!-- Subtle Creative Ambient Glow Orbs -->
+      <div class="hero-ambient-orb orb-1" aria-hidden="true"></div>
+      <div class="hero-ambient-orb orb-2" aria-hidden="true"></div>
+
+      <div class="hero-top-grid">
+        <!-- Left: Friendly, Easy-to-Read Intro -->
+        <div class="hero-main-copy">
+          <h1 class="hero-display">
+            Turning Mechanical Ideas Into <span class="serif-italic">Tested, Ready-to-Build</span> Products.
+          </h1>
+
+          <p class="hero-lead" id="hero-tagline"></p>
+
+          <div class="hero-cta-row">
+            <a href="#project-cubes-container" class="cta-pill-btn dark-solid">
+              <span>Browse Projects</span>
+              <span class="cta-circle-icon">↓</span>
+            </a>
+            <button class="cta-pill-btn light-outline" data-open-view="gallery">
+              <span class="cta-circle-icon">⊞</span>
+              <span>Image Gallery</span>
+            </button>
+            <button class="cta-pill-btn light-outline" data-open-view="resume">
+              <span>View Resume</span>
+              <span class="cta-circle-icon">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Creative Minimalist "How I Work" + Featured Visual Card -->
+        <div class="hero-creative-showcase">
+          <div class="workflow-cards-grid">
+            <div class="workflow-mini-card">
+              <span class="wf-num">01</span>
+              <div>
+                <strong>CAD &amp; Systems Design</strong>
+                <p>SolidWorks &amp; CATIA — VPX chassis, LRUs, structural assemblies &amp; flexures.</p>
+              </div>
+            </div>
+            <div class="workflow-mini-card">
+              <span class="wf-num">02</span>
+              <div>
+                <strong>CAE &amp; CFD Simulation</strong>
+                <p>ANSYS, Fluent &amp; SimScale — thermal, structural FEA &amp; aerodynamics.</p>
+              </div>
+            </div>
+            <div class="workflow-mini-card">
+              <span class="wf-num">03</span>
+              <div>
+                <strong>Standards &amp; Documentation</strong>
+                <p>MIL-STD, VITA &amp; Indian Standards (IS) — ICDs, QAPs, BOMs &amp; drawings.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-featured-frame" data-lightbox-trigger data-caption="Featured Work — 20S5P Split-Pack EV Battery Module with 90 Axial Heat Pipes (SolidWorks 2025)">
+            <div class="featured-frame-bar">
+              <span class="dot-group"><i></i><i></i><i></i></span>
+              <span class="frame-label">FEATURED CAD — EV BATTERY THERMAL SYSTEM</span>
+              <span class="frame-zoom">CLICK TO ENLARGE ↗</span>
+            </div>
+            <div class="hero-blueprint-showcase" id="hero-blueprint-preview"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evenly Proportioned Project Quick-Index Strip -->
+      <div class="hero-index-strip">
+        <div class="index-strip-header">
+          <div class="index-strip-title">
+            <span class="mono-tag">QUICK PROJECT OVERVIEW</span>
+            <span class="index-strip-hint">Click any project below or scroll down to explore step-by-step</span>
+          </div>
+          <span class="mono-counter" id="project-count-badge">03 PROJECTS</span>
+        </div>
+        <div class="directory-list-even" id="hero-project-ledger"></div>
+      </div>
+    </section>
+
+    <!-- Sequential Project Cubes Stream -->
+    <div id="project-cubes-container" class="cubes-stream"></div>
+
+    <!-- Final Cube: Contact & Capabilities -->
+    <section class="project-cube contact-cube cube-theme-slate apple-reveal" id="contact-cube"
+             data-scroll-code="END / CONTACT"
+             data-scroll-title="Contact &amp; Resume"
+             data-rail-id="contact-cube">
+      <div class="cube-header">
+        <div class="cube-id-group">
+          <span class="cube-number-pill">CONTACT</span>
+          <div>
+            <h2 class="cube-title">Dasari Bala Srinivas</h2>
+            <p class="cube-subtitle">Mechanical Engineer · CAD &amp; CAE · Systems Engineering, Design &amp; Integration · Defence, Aerospace &amp; Energy</p>
+          </div>
+        </div>
+        <div class="cube-meta-right">
+          <span class="cube-badge">GUNTUR / BENGALURU, INDIA</span>
+        </div>
+      </div>
+
+      <div class="contact-bento-grid">
+        <div class="contact-bento-card">
+          <span class="mono-tag">CURRICULUM VITAE</span>
+          <h3>Official Engineering Resume</h3>
+          <p>View or print the complete resume covering R&amp;D engineering experience, technical capabilities, projects, education, and certifications.</p>
+          <div class="card-action-footer">
+            <button class="cta-pill-btn dark-solid" data-open-view="resume">
+              <span>View / Print Resume</span>
+              <span class="cta-circle-icon">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="contact-bento-card">
+          <span class="mono-tag">SKILLS &amp; CAPABILITIES</span>
+          <h3>Core Engineering Domains</h3>
+          <p>First-principles mechanical design, electronics packaging, and CAE simulation across Defence, Aerospace, and Energy systems:</p>
+          <div class="services-mini" id="services-mini-list"></div>
+        </div>
+
+        <div class="contact-bento-card dark-panel">
+          <span class="mono-tag light">DIRECT CONTACT</span>
+          <h3>Reach Out Directly</h3>
+          <div class="contact-links" id="contact-links-box"></div>
+        </div>
+      </div>
+
+      <div class="infinite-loop-footer" id="infinite-loop-sentinel">
+        <div class="loop-banner">
+          <div class="loop-status">
+            <span class="telemetry-dot"></span>
+            <span>YOU HAVE REACHED THE END OF THE PORTFOLIO</span>
+          </div>
+          <button class="cta-pill-btn light-outline" id="restart-sequence-btn">
+            <span>Back to Top / Project 01</span>
+            <span class="cta-circle-icon">↑</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       VIEW 02: CLEAN IMAGE-ONLY GALLERY (No top ribbon banner)
+       ==================================================================== -->
+  <section id="view-gallery" class="view-section" hidden>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </section>
+
+  <!-- ====================================================================
+       VIEW 03: OFFICIAL ENGINEERING RESUME / CV
+       ==================================================================== -->
+  <section id="view-resume" class="view-section" hidden>
+    <div class="subview-banner">
+      <div>
+        <span class="mono-tag">03 / CURRICULUM VITAE</span>
+        <h2>Dasari Bala Srinivas — Official Resume</h2>
+        <p class="subview-desc">Mechanical Engineer | CAD &amp; CAE | Systems Engineering, Design &amp; Integration | Defence, Aerospace &amp; Energy</p>
+      </div>
+      <div class="resume-actions">
+        <a class="cta-pill-btn light-outline" href="./assets/resume/Dasari_Bala_Srinivas_Resume.pdf" download="Dasari_Bala_Srinivas_Resume.pdf">
+          <span>Download PDF</span>
+          <span class="cta-circle-icon">↓</span>
+        </a>
+        <button class="cta-pill-btn dark-solid" id="print-resume-btn">
+          <span>Print / Save as PDF</span>
+          <span class="cta-circle-icon">↗</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="resume-sheet" id="resume-sheet-content"></div>
+  </section>
+
+  <!-- ====================================================================
+       FIXED BOTTOM-CENTER WHITE SCROLL ANIMATION INDICATOR
+       Fades out on scroll, reappears softly when idle
+       ==================================================================== -->
+  <div class="bottom-scroll-indicator" id="bottom-scroll-indicator" aria-hidden="true">
+    <div class="scroll-pill-glass">
+      <div class="scroll-up-arrows">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="scroll-mouse-white">
+        <span class="wheel-dot-white"></span>
+      </div>
+      <span class="scroll-label-white">SCROLL TO EXPLORE</span>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MOBILE STICKY BOTTOM QUICK-BAR
+       ==================================================================== -->
+  <nav class="mobile-bottom-dock" aria-label="Mobile Quick Navigation">
+    <button class="dock-btn active" data-view-btn="stream">
+      <span class="dock-icon">⬡</span>
+      <span>Projects</span>
+    </button>
+    <button class="dock-btn" data-view-btn="gallery">
+      <span class="dock-icon">⊞</span>
+      <span>Gallery</span>
+    </button>
+    <button class="dock-btn" data-view-btn="resume">
+      <span class="dock-icon">▤</span>
+      <span>Resume</span>
+    </button>
+    <a href="#contact-cube" class="dock-btn dock-cta" id="mobile-contact-btn">
+      <span class="dock-icon">↗</span>
+      <span>Contact</span>
+    </a>
+  </nav>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-backdrop" id="figure-lightbox" hidden>
+    <div class="lightbox-frame">
+      <div class="lightbox-top">
+        <span id="lightbox-caption" class="mono-label">FIGURE INSPECTION</span>
+        <button class="cta-pill-btn dark-solid compact" id="lightbox-close-btn">
+          <span>Close [ESC]</span>
+          <span class="cta-circle-icon">✕</span>
+        </button>
+      </div>
+      <div class="lightbox-canvas" id="lightbox-canvas"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
