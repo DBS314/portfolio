@@ -71,102 +71,45 @@ body {
 }
 
 /* ==========================================================================
-   FLUID VIEW TRANSITIONS & SPRING REVEAL ANIMATIONS
+   PURE GPU-COMPOSITED VIEW TRANSITIONS & SPRING REVEALS (Zero Blur Lag)
    ========================================================================== */
-::view-transition-old(root) {
-  animation: fluidFadeOut 0.26s var(--apple-ease) both;
-}
-
-::view-transition-new(root) {
-  animation: fluidFadeIn 0.42s var(--fluid-spring) both;
-}
-
-@keyframes fluidFadeOut {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-8px) scale(0.992); }
-}
-
-@keyframes fluidFadeIn {
-  from { opacity: 0; transform: translateY(14px) scale(0.992); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+.view-section {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  transition:
+    opacity 0.36s var(--apple-ease),
+    transform 0.42s var(--fluid-spring);
 }
 
 .view-section.active {
-  animation: fluidViewEnter 0.55s var(--fluid-spring) both;
-}
-
-@keyframes fluidViewEnter {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.994);
-    filter: blur(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
-  }
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .apple-reveal {
   opacity: 0;
-  transform: translateY(28px) scale(0.988);
-  filter: blur(3px);
+  transform: translate3d(0, 18px, 0);
   transition:
-    opacity 0.85s var(--fluid-spring),
-    transform 0.85s var(--fluid-spring),
-    filter 0.75s var(--fluid-spring);
-  will-change: opacity, transform, filter;
+    opacity 0.55s var(--apple-ease),
+    transform 0.62s var(--fluid-spring);
 }
 
 .apple-reveal.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0px);
+  transform: translate3d(0, 0, 0);
 }
 
-/* Staggered child cascade inside revealed sections */
-.apple-reveal .metric-cell,
-.apple-reveal .workflow-mini-card,
-.apple-reveal .ledger-card-link,
-.apple-reveal .pres-bullet-list li,
-.apple-reveal .pres-figure-card {
-  opacity: 0;
-  transform: translateY(16px);
+.metric-cell,
+.workflow-mini-card,
+.ledger-card-link,
+.pres-bullet-list li,
+.pres-figure-card {
   transition:
-    opacity 0.65s var(--fluid-spring),
-    transform 0.65s var(--fluid-spring),
-    box-shadow 0.35s var(--apple-ease),
-    border-color 0.35s var(--apple-ease),
-    background-color 0.35s var(--apple-ease);
+    transform 0.32s var(--fluid-spring),
+    box-shadow 0.32s var(--apple-ease),
+    border-color 0.25s var(--apple-ease),
+    background-color 0.25s var(--apple-ease);
 }
-
-.apple-reveal.is-visible .metric-cell,
-.apple-reveal.is-visible .workflow-mini-card,
-.apple-reveal.is-visible .ledger-card-link,
-.apple-reveal.is-visible .pres-bullet-list li,
-.apple-reveal.is-visible .pres-figure-card {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.apple-reveal.is-visible .metric-cell:nth-child(1),
-.apple-reveal.is-visible .workflow-mini-card:nth-child(1),
-.apple-reveal.is-visible .ledger-card-link:nth-child(1),
-.apple-reveal.is-visible .pres-bullet-list li:nth-child(1) { transition-delay: 0.04s; }
-
-.apple-reveal.is-visible .metric-cell:nth-child(2),
-.apple-reveal.is-visible .workflow-mini-card:nth-child(2),
-.apple-reveal.is-visible .ledger-card-link:nth-child(2),
-.apple-reveal.is-visible .pres-bullet-list li:nth-child(2) { transition-delay: 0.10s; }
-
-.apple-reveal.is-visible .metric-cell:nth-child(3),
-.apple-reveal.is-visible .workflow-mini-card:nth-child(3),
-.apple-reveal.is-visible .ledger-card-link:nth-child(3),
-.apple-reveal.is-visible .pres-bullet-list li:nth-child(3) { transition-delay: 0.16s; }
-
-.apple-reveal.is-visible .metric-cell:nth-child(4),
-.apple-reveal.is-visible .pres-bullet-list li:nth-child(4) { transition-delay: 0.22s; }
 
 /* ==========================================================================
    UNIFIED PRECISION GLASS TOP RIBBON (Desktop & Mobile)
@@ -445,9 +388,11 @@ body {
 
 .scroll-progress-bar {
   height: 100%;
-  width: 0%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
   background: linear-gradient(90deg, var(--accent-amber), var(--accent-blue));
-  transition: width 0.22s var(--fluid-spring);
+  will-change: transform;
 }
 
 /* ==========================================================================
@@ -2084,18 +2029,25 @@ body {
 }
 
 /* ==========================================================================
-   LIGHTBOX MODAL
+   LIGHTBOX MODAL (Fluid Spring Open/Close)
    ========================================================================== */
 .lightbox-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(12, 13, 16, 0.88);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.22s var(--apple-ease);
+}
+
+.lightbox-backdrop.is-open {
+  opacity: 1;
 }
 
 .lightbox-backdrop[hidden] {
@@ -2109,6 +2061,12 @@ body {
   width: 100%;
   overflow: hidden;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  transform: translate3d(0, 12px, 0) scale(0.97);
+  transition: transform 0.28s var(--fluid-spring);
+}
+
+.lightbox-backdrop.is-open .lightbox-frame {
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 .lightbox-top {
