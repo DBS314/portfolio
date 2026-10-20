@@ -9,7 +9,7 @@ export const PROFILE = {
   shortName: 'Bala Srinivas',
   role: 'Mechanical Engineer | CAD & CAE | Systems Engineering, Design & Integration | Defence, Aerospace & Energy',
   tagline:
-    'Mechanical Engineer with a first-principles approach to problem-solving and hands-on experience in deep-tech and R&D startup environments—specializing in CAD/CAE (SolidWorks, CATIA, ANSYS, SimScale), Defence & Aerospace electronics packaging (VPX, LRUs, MIL-STD), and multidisciplinary system integration.',
+    'Mechanical Engineer with a first-principles approach to problem-solving and hands-on experience in deep-tech and R&D startup environments—specializing in CAD/CAE (SolidWorks, Siemens NX, CATIA, ANSYS, SimScale), Defence & Aerospace electronics packaging (VPX, LRUs, MIL-STD), and multidisciplinary system integration.',
   summary:
     'Mechanical Engineer with a first-principles approach to problem-solving, developing expertise through hands-on experience in deep-tech and R&D Startup Environments. Experienced in mechanical design, CAD/CAE, electronics packaging, and multidisciplinary engineering, with an emphasis on understanding system-level requirements, managing interfaces, and integrating subsystems into practical engineering solutions. Driven by continuous learning, technical ownership, and solving complex engineering challenges.',
   location: 'Guntur, Andhra Pradesh / Bengaluru, India',
@@ -24,7 +24,7 @@ export const PROFILE = {
   softwareMatrix: [
     {
       domain: 'CAD & CAE Tools',
-      items: ['SolidWorks', 'CATIA', 'ANSYS (Mechanical, Discovery & Fluent)', 'SimScale'],
+      items: ['SolidWorks', 'Siemens NX', 'CATIA', 'ANSYS (Mechanical, Discovery & Fluent)', 'SimScale'],
     },
     {
       domain: 'Mechanical Systems Design',
@@ -154,7 +154,7 @@ export const PROFILE = {
   servicesForClients: [
     {
       code: '01',
-      title: 'CAD & CAE (SolidWorks, CATIA, ANSYS, SimScale)',
+      title: 'CAD & CAE (SolidWorks, Siemens NX, CATIA, ANSYS, SimScale)',
     },
     {
       code: '02',
