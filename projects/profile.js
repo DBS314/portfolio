@@ -11,15 +11,15 @@ export const PROFILE = {
   tagline:
     'Mechanical Engineer with a first-principles approach to problem-solving and hands-on experience in deep-tech and R&D startup environments—specializing in CAD/CAE (SolidWorks, Siemens NX, CATIA, ANSYS, SimScale), Defence & Aerospace electronics packaging (VPX, LRUs, MIL-STD), and multidisciplinary system integration.',
   summary:
-    'Mechanical Engineer with a first-principles approach to problem-solving, developing expertise through hands-on experience in deep-tech and R&D Startup Environments. Experienced in mechanical design, CAD/CAE, electronics packaging, and multidisciplinary engineering, with an emphasis on understanding system-level requirements, managing interfaces, and integrating subsystems into practical engineering solutions. Driven by continuous learning, technical ownership, and solving complex engineering challenges.',
+    'Mechanical Engineer with hands-on R&D experience in aerospace/defence mechanical design, CAD/CAE, LRU packaging, custom enclosures and multidisciplinary subsystem integration. Experienced in developing 3D mechanical assemblies, mounting interfaces and cooling-oriented chassis concepts, and producing engineering documentation including BOMs, drawings and interface documents. Brings a manufacturing-aware design approach and experience collaborating with RF, FPGA and Hardware teams. Seeking to apply these skills to aerospace mechanical design and electrical/mechanical integration.',
   location: 'Guntur, Andhra Pradesh / Bengaluru, India',
   email: 'balasrinivas314@gmail.com',
   linkedin: 'https://www.linkedin.com/in/bala-srinivas-mech',
   linkedinDisplay: 'www.linkedin.com/in/bala-srinivas-mech',
   phone: '+91 8500716992',
   phoneDisplay: '🇮🇳 +91 8500716992 (IN)',
-  resumePdfUrl: './assets/resume/Dasari_Bala_Srinivas_CV_2026.pdf?v=2',
-  resumeImageUrl: './assets/resume/Dasari_Bala_Srinivas_Resume.png?v=2',
+  resumePdfUrl: './assets/resume/Dasari_Bala_Srinivas_CV_2026.pdf?v=3',
+  resumeImageUrl: './assets/resume/Dasari_Bala_Srinivas_Resume.png?v=3',
 
   softwareMatrix: [
     {
@@ -75,7 +75,7 @@ export const PROFILE = {
       ],
       highlights: [
         'Supported R&D activities in radar development, VPX systems, and custom MIL-STD applications through CAD/CAE-driven design and engineering analysis.',
-        'Collaborated with multidisciplinary RF, FPGA, and Civil Engineering teams during the pre-development of a specialised radar system, contributing to mechanical structures, thermal management, interfaces, mounting arrangements, and pre-visualisation models.',
+        'Collaborated with multidisciplinary RF, FPGA, and Hardware teams during the pre-development of a specialised radar system, contributing to mechanical structures, thermal management, interfaces, mounting arrangements, and pre-visualisation models.',
         'Contributed to new designs and redesigns of LRUs, test and qualification chassis, air-cooled, conduction-cooled, and liquid-cooled systems, and mechanical assemblies. Conducted self-directed R&D into precision mechanisms, particularly flexures.',
       ],
     },
