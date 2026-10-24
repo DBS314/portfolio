@@ -1,18 +1,22 @@
 /**
- * PORTFOLIO ANALYTICS & 20-SECOND MOBILE NOTIFICATION ENGINE (`js/analytics.js`)
+ * STEALTH PORTFOLIO ANALYTICS & 20-SECOND MOBILE NOTIFICATION ENGINE (`js/analytics.js`)
  * ============================================================================
- * - Tracks active visible viewing time (pauses when tab is backgrounded)
- * - Fires an instant mobile push notification via ntfy.sh when a visitor views
- *   the portfolio for > 20 seconds (or downloads the Resume PDF)
- * - Syncs visitor telemetry across devices using ntfy's JSON stream + localStorage
- * - Renders an interactive Analytics & Mobile Alert Dashboard Modal
+ * - 100% invisible to visitors: zero buttons, zero timers, zero visible UI
+ * - Silently tracks active visible viewing time & fires an instant mobile push
+ *   notification via ntfy.sh when any visitor stays > 20 seconds or downloads Resume
+ * - Private Owner-Only Dashboard: Unlocked ONLY via:
+ *     1) Secret URL: `#admin-8500`
+ *     2) 5 rapid taps on the top-left 3D cube monogram (or `Alt + Shift + A`) + PIN `8500`
  */
 
 import { escapeHtml } from './visuals.js';
 
 const DEFAULT_NTFY_TOPIC = 'dbs314-portfolio-alerts-8500';
+const OWNER_SECRET_HASH = '#admin-8500';
+const OWNER_PIN = '8500';
 const STORAGE_KEY_HISTORY = 'dbs_portfolio_analytics_v1';
 const STORAGE_KEY_OWNER_MUTE = 'dbs_portfolio_owner_mute_v1';
+const STORAGE_KEY_OWNER_UNLOCKED = 'dbs_portfolio_owner_auth_v1';
 const STORAGE_KEY_TOPIC = 'dbs_portfolio_ntfy_topic_v1';
 const ENGAGEMENT_THRESHOLD_SEC = 20;
 
@@ -30,12 +34,12 @@ export function initPortfolioAnalytics() {
     startedAt: new Date().toISOString(),
   };
 
-  // Fetch non-blocking visitor geolocation (city, country, ISP/org)
+  // Silently fetch visitor geolocation in background
   fetchVisitorGeo().then((geo) => {
     state.visitorGeo = geo;
   });
 
-  // Track max scroll depth & sections viewed
+  // Silently track max scroll depth & sections viewed
   window.addEventListener(
     'scroll',
     () => {
@@ -53,7 +57,7 @@ export function initPortfolioAnalytics() {
     { passive: true }
   );
 
-  // Track view tab clicks (Projects / Gallery / Resume)
+  // Silently track tab switches & Resume PDF downloads
   document.addEventListener('click', (e) => {
     const viewBtn = e.target.closest('[data-view-btn], [data-open-view]');
     if (viewBtn) {
@@ -66,36 +70,26 @@ export function initPortfolioAnalytics() {
     if (downloadLink && !state.resumeDownloaded) {
       state.resumeDownloaded = true;
       state.viewedSections.add('03 / Resume PDF');
-      sendMobileAlert(state, 'resume_download');
+      if (!isOwnerMuted()) {
+        sendMobileAlert(state, 'resume_download');
+      }
     }
   });
 
-  // 1-second active engagement timer (only counts while tab is visible)
+  // Silent 1-second active engagement timer (only counts while tab is visible)
   const timerId = setInterval(() => {
     if (document.visibilityState !== 'visible') return;
 
     state.activeSeconds += 1;
-    updateLiveTimerBadge(state.activeSeconds, state.notified20s);
 
     if (state.activeSeconds === ENGAGEMENT_THRESHOLD_SEC && !state.notified20s) {
       state.notified20s = true;
-      updateLiveTimerBadge(state.activeSeconds, true);
       recordAndNotifyEngagedVisit(state);
     }
   }, 1000);
 
-  // Bind Analytics Modal UI controls
-  setupAnalyticsModal(state);
-
-  // Open modal automatically if URL hash is #analytics
-  if (window.location.hash === '#analytics') {
-    openAnalyticsModal(state);
-  }
-  window.addEventListener('hashchange', () => {
-    if (window.location.hash === '#analytics') {
-      openAnalyticsModal(state);
-    }
-  });
+  // Set up private owner-only access triggers & modal controls
+  setupPrivateOwnerAccess(state);
 
   return () => clearInterval(timerId);
 }
@@ -162,7 +156,7 @@ async function fetchVisitorGeo() {
       };
     }
   } catch {
-    // Fallback if blocked by browser privacy extension
+    // Fallback if blocked by browser extension
   }
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Global';
   return {
@@ -275,7 +269,7 @@ async function sendMobileAlert(state, triggerType = 'engaged_20s', customRecord 
         Title: title,
         Priority: priority,
         Tags: tags,
-        Click: 'https://dbs314.github.io/portfolio/#analytics',
+        Click: `https://dbs314.github.io/portfolio/${OWNER_SECRET_HASH}`,
       },
       body: messageLines.join('\n'),
     });
@@ -318,19 +312,9 @@ async function syncCloudEventsFromNtfy() {
   return loadLocalHistory();
 }
 
-function updateLiveTimerBadge(seconds, isNotified) {
-  const badgeEl = document.getElementById('live-engagement-timer');
-  if (!badgeEl) return;
-  badgeEl.textContent = `${seconds}s`;
-  if (isNotified) {
-    badgeEl.classList.add('engaged-20s');
-  }
-}
-
-function setupAnalyticsModal(state) {
+function setupPrivateOwnerAccess(state) {
   const modal = document.getElementById('analytics-modal');
   const closeBtn = document.getElementById('analytics-close-btn');
-  const openBtns = document.querySelectorAll('[data-open-analytics]');
   const testBtn = document.getElementById('analytics-test-push-btn');
   const copyTopicBtn = document.getElementById('analytics-copy-topic-btn');
   const muteToggle = document.getElementById('analytics-owner-mute-toggle');
@@ -338,16 +322,63 @@ function setupAnalyticsModal(state) {
 
   if (!modal) return;
 
-  openBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openAnalyticsModal(state);
+  function unlockAndOpen() {
+    localStorage.setItem(STORAGE_KEY_OWNER_UNLOCKED, 'true');
+    openAnalyticsModal(state);
+  }
+
+  function promptOwnerPin() {
+    if (localStorage.getItem(STORAGE_KEY_OWNER_UNLOCKED) === 'true') {
+      unlockAndOpen();
+      return;
+    }
+    const entered = window.prompt('Owner Access PIN:');
+    if (entered && entered.trim() === OWNER_PIN) {
+      unlockAndOpen();
+    }
+  }
+
+  // 1. Secret URL Hash (`#admin-8500`)
+  function checkSecretHash() {
+    if (window.location.hash === OWNER_SECRET_HASH) {
+      unlockAndOpen();
+    }
+  }
+  checkSecretHash();
+  window.addEventListener('hashchange', checkSecretHash);
+
+  // 2. Secret 5-tap gesture on the top-left 3D cube monogram (or footer dot)
+  let tapCount = 0;
+  let tapTimer = null;
+  const monogramEl = document.querySelector('.brand-monogram');
+  if (monogramEl) {
+    monogramEl.addEventListener('click', (e) => {
+      tapCount += 1;
+      clearTimeout(tapTimer);
+      if (tapCount >= 5) {
+        e.preventDefault();
+        e.stopPropagation();
+        tapCount = 0;
+        promptOwnerPin();
+      } else {
+        tapTimer = setTimeout(() => {
+          tapCount = 0;
+        }, 1600);
+      }
     });
+  }
+
+  // 3. Secret Keyboard Shortcut on Desktop (`Alt + Shift + A`)
+  window.addEventListener('keydown', (e) => {
+    if (e.altKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      promptOwnerPin();
+    }
   });
 
   function closeModal() {
     modal.classList.remove('is-open');
-    if (window.location.hash === '#analytics') {
+    if (window.location.hash === OWNER_SECRET_HASH) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
     setTimeout(() => {
@@ -498,7 +529,7 @@ async function renderAnalyticsDashboardData(state) {
       tbody.innerHTML = `
         <tr>
           <td colspan="6" style="text-align: center; color: var(--ink-muted); padding: 1.2rem;">
-            Current session active (${state.activeSeconds}s). Visitor logs appear here automatically once >20s threshold is reached.
+            Silent background tracking active (${state.activeSeconds}s). Visitor logs appear here automatically once >20s threshold is reached.
           </td>
         </tr>
       `;
