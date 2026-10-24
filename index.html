@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self' https://ntfy.sh https://ipwho.is; object-src 'none'; base-uri 'self'; form-action 'self';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Dasari Bala Srinivas — Mechanical CAD &amp; CAE Portfolio</title>
   <meta name="description" content="Mechanical Engineer | CAD & CAE | Systems Engineering, Design & Integration | Defence, Aerospace & Energy." />
@@ -76,8 +76,18 @@
         </button>
       </nav>
 
-      <!-- Right: Clean Contact Action Button -->
+      <!-- Right: Live Analytics Trigger + Contact Action Button -->
       <div class="header-col-right">
+        <button type="button" class="header-analytics-btn" data-open-analytics title="View Portfolio Analytics &amp; 20s Mobile Alerts">
+          <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <span class="analytics-btn-label">Analytics</span>
+          <span class="live-timer-chip" id="live-engagement-timer">0s</span>
+        </button>
+
         <a href="#contact-cube" class="header-contact-btn" id="contact-jump-btn">
           <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -397,6 +407,120 @@
         </button>
       </div>
       <div class="lightbox-canvas" id="lightbox-canvas"></div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       PORTFOLIO ANALYTICS & >20s MOBILE NOTIFICATION DASHBOARD MODAL
+       ==================================================================== -->
+  <div class="lightbox-backdrop" id="analytics-modal" hidden>
+    <div class="lightbox-frame analytics-modal-frame">
+      <div class="lightbox-top">
+        <div class="analytics-modal-title-group">
+          <span class="telemetry-dot"></span>
+          <span class="mono-label">PORTFOLIO TELEMETRY · &gt;20s ENGAGED VISITOR ANALYTICS &amp; MOBILE ALERTS</span>
+        </div>
+        <div class="analytics-top-actions">
+          <button type="button" class="action-btn secondary compact" id="analytics-refresh-btn">
+            <span>Refresh Data</span>
+          </button>
+          <button type="button" class="action-btn primary compact" id="analytics-close-btn">
+            <span>Close [ESC]</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="analytics-modal-body">
+        <!-- 4 KPI Cards -->
+        <div class="analytics-kpi-grid">
+          <div class="analytics-kpi-card">
+            <span class="metric-label">ENGAGED VIEWS (&gt;20 SECONDS)</span>
+            <span class="metric-value" id="kpi-engaged-count">0</span>
+          </div>
+          <div class="analytics-kpi-card">
+            <span class="metric-label">TOTAL TRACKED EVENTS</span>
+            <span class="metric-value" id="kpi-total-sessions">1</span>
+          </div>
+          <div class="analytics-kpi-card">
+            <span class="metric-label">AVG. ACTIVE TIME &amp; SCROLL</span>
+            <span class="metric-value" id="kpi-avg-duration">20s (0% scroll)</span>
+          </div>
+          <div class="analytics-kpi-card">
+            <span class="metric-label">RESUME PDF DOWNLOADS</span>
+            <span class="metric-value" id="kpi-resume-downloads">0</span>
+          </div>
+        </div>
+
+        <!-- Two-Column Middle: Project Engagement Breakdown + Mobile Push Setup -->
+        <div class="analytics-mid-grid">
+          <div class="analytics-panel">
+            <span class="mono-tag">SECTION &amp; PROJECT ENGAGEMENT BREAKDOWN</span>
+            <h4>Which Projects Visitors Spend Time On</h4>
+            <div class="analytics-bars-list" id="analytics-project-bars"></div>
+          </div>
+
+          <div class="analytics-panel dark-panel">
+            <span class="mono-tag light">INSTANT MOBILE PUSH NOTIFICATIONS (&gt;20s VIEW)</span>
+            <h4>Receive Alerts on Your Phone (Android / iOS)</h4>
+            <p class="analytics-panel-desc">
+              Whenever anyone views your portfolio for <strong>more than 20 seconds</strong> (or downloads your Resume PDF), an instant push notification with their <strong>City/Country, Device, Source, and Viewed Projects</strong> is sent to your phone via <strong>ntfy.sh</strong>:
+            </p>
+
+            <div class="ntfy-setup-steps">
+              <div class="ntfy-step">
+                <strong>1. Install Free App:</strong> Download <strong>ntfy</strong> on <a href="https://play.google.com/store/apps/details?id=io.heckel.ntfy" target="_blank" rel="noopener noreferrer">Google Play (Android)</a> or <a href="https://apps.apple.com/us/app/ntfy/id1625396347" target="_blank" rel="noopener noreferrer">App Store (iOS)</a> (or open <a href="https://ntfy.sh/dbs314-portfolio-alerts-8500" target="_blank" rel="noopener noreferrer">ntfy.sh/dbs314-portfolio-alerts-8500</a> in browser).
+              </div>
+              <div class="ntfy-step">
+                <strong>2. Subscribe to Topic:</strong> Tap <code>+</code> in the app and paste this exact topic name:
+              </div>
+              <div class="ntfy-topic-box">
+                <code id="analytics-topic-code">dbs314-portfolio-alerts-8500</code>
+                <button type="button" class="action-btn secondary compact" id="analytics-copy-topic-btn">Copy Topic</button>
+              </div>
+            </div>
+
+            <div class="analytics-controls-row">
+              <button type="button" class="action-btn primary" id="analytics-test-push-btn">
+                <span class="action-btn-left">
+                  <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                  </svg>
+                  <span>Send Test Notification to My Phone</span>
+                </span>
+              </button>
+
+              <label class="owner-mute-label">
+                <input type="checkbox" id="analytics-owner-mute-toggle" />
+                <span>Mute alerts from my own device</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Engaged Visitors Log Table -->
+        <div class="analytics-panel">
+          <span class="mono-tag">LIVE ENGAGED VISITOR STREAM (&gt;20 SECONDS &amp; RESUME DOWNLOADS)</span>
+          <h4>Recent Visitor Telemetry</h4>
+          <div class="step-table-wrap">
+            <div class="table-scroll-container">
+              <table class="eng-data-table">
+                <thead>
+                  <tr>
+                    <th>Time (IST)</th>
+                    <th>Event</th>
+                    <th>Visitor Location</th>
+                    <th>Device &amp; OS</th>
+                    <th>Source</th>
+                    <th>Engagement &amp; Viewed Sections</th>
+                  </tr>
+                </thead>
+                <tbody id="analytics-visitor-log-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
